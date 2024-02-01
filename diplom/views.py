@@ -2,24 +2,25 @@ from django.shortcuts import render
 from rest_framework import generics
 from .models import *
 from .serializers import *
+from rest_framework import viewsets
 
 
-class OrderListInfoView(generics.ListCreateAPIView):
+class OrderListInfoView(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
 
-class CourierInfoView(generics.ListCreateAPIView):
+class CourierInfoView(viewsets.ModelViewSet):
     queryset = Courier.objects.all()
     serializer_class = CourierSerializer
 
 
-class VendorInfoView(generics.ListCreateAPIView):
+class VendorInfoView(viewsets.ModelViewSet):
     queryset = Vendor.objects.all()
     serializer_class = VendorSerializer
 
 
-class CustomUserInfoView(generics.ListCreateAPIView):
+class CustomUserInfoView(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
 

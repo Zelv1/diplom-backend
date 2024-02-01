@@ -6,10 +6,10 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class CustomUser(AbstractUser):
     courier = models.OneToOneField(
-        "Courier", on_delete=models.CASCADE, null=True, verbose_name="Курьер"
+        "Courier", on_delete=models.CASCADE, null=True, blank=True, verbose_name="Курьер"
     )
     vendor = models.OneToOneField(
-        "Vendor", on_delete=models.CASCADE, null=True, verbose_name="Заказчик"
+        "Vendor", on_delete=models.CASCADE, null=True, blank=True, verbose_name="Заказчик"
     )
 
     class Meta:
@@ -20,7 +20,7 @@ class CustomUser(AbstractUser):
 class Courier(models.Model):
     name = models.CharField(max_length=12, verbose_name="Имя курьера")
     drivingExperience = models.PositiveIntegerField(verbose_name="Водительский стаж")
-    number = models.CharField(max_length=17, verbose_name="Номер телефона")
+    number = models.CharField(max_length=17, unique=True, verbose_name="Номер телефона")
 
     class Meta:
         verbose_name = "Курьер"
@@ -46,7 +46,7 @@ class Order(models.Model):
         verbose_name="Состояние",
     )
     phoneNumber = models.CharField(max_length=17, verbose_name="Телефон для связи")
-    review = models.TextField(null=True, verbose_name="Комментарий")
+    review = models.TextField(null=True, blank=True, verbose_name="Комментарий")
 
     class Meta:
         verbose_name = "Заказ"
