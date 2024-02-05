@@ -23,7 +23,7 @@ router = routers.SimpleRouter()
 router.register(r'order', OrderListInfoView)
 router.register(r'courier', CourierInfoView)
 router.register(r'vendor', VendorInfoView)
-router.register(r'user', CustomUserInfoView)
+##router.register(r'user', CustomUserInfoView)
 
 
 urlpatterns = [

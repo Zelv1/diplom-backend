@@ -32,12 +32,12 @@ class Courier(models.Model):
 
 class Order(models.Model):
     IDVendor = models.ForeignKey(
-        "Vendor", on_delete=models.CASCADE, verbose_name="Курьер"
+        "Vendor", on_delete=models.CASCADE, verbose_name="Заказчик"
     )
     IDCourier = models.ForeignKey(
-        "CustomUser", on_delete=models.CASCADE, verbose_name="Курьер"
+        "CustomUser", on_delete=models.CASCADE, verbose_name="Курьер", null=True, blank=True,
     )
-    date = models.DateField(verbose_name="Дата и время создания")
+    date = models.DateField(verbose_name="Дата и время создания", auto_now_add=True)
     adress = models.CharField(max_length=50, verbose_name="Адрес")
     deliverTo = models.DateTimeField(verbose_name="Доставить до")
     state = models.CharField(
