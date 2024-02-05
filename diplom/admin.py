@@ -6,4 +6,3 @@ admin.site.register(Order)
 admin.site.register(CustomUser)
 admin.site.register(Courier)
 admin.site.register(Vendor)
-

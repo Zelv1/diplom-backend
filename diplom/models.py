@@ -6,10 +6,18 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class CustomUser(AbstractUser):
     courier = models.OneToOneField(
-        "Courier", on_delete=models.CASCADE, null=True, blank=True, verbose_name="Курьер"
+        "Courier",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        verbose_name="Курьер",
     )
     vendor = models.OneToOneField(
-        "Vendor", on_delete=models.CASCADE, null=True, blank=True, verbose_name="Заказчик"
+        "Vendor",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        verbose_name="Заказчик",
     )
 
     class Meta:
@@ -35,10 +43,14 @@ class Order(models.Model):
         "Vendor", on_delete=models.CASCADE, verbose_name="Заказчик"
     )
     IDCourier = models.ForeignKey(
-        "CustomUser", on_delete=models.CASCADE, verbose_name="Курьер", null=True, blank=True,
+        "CustomUser",
+        on_delete=models.CASCADE,
+        verbose_name="Курьер",
+        null=True,
+        blank=True,
     )
     date = models.DateField(verbose_name="Дата и время создания", auto_now_add=True)
-    adress = models.CharField(max_length=50, verbose_name="Адрес")
+    address = models.CharField(max_length=50, verbose_name="Адрес")
     deliverTo = models.DateTimeField(verbose_name="Доставить до")
     state = models.CharField(
         max_length=255,
@@ -54,7 +66,7 @@ class Order(models.Model):
 
 
 class Vendor(models.Model):
-    adress = models.CharField(max_length=50, verbose_name="Адрес")
+    address = models.CharField(max_length=50, verbose_name="Адрес")
     nameOfOrganization = models.CharField(
         max_length=30, verbose_name="Название организации"
     )

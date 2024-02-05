@@ -20,15 +20,15 @@ from diplom.views import *
 from rest_framework import routers
 
 router = routers.SimpleRouter()
-router.register(r'order', OrderListInfoView)
-router.register(r'courier', CourierInfoView)
-router.register(r'vendor', VendorInfoView)
+router.register(r"order", OrderListInfoView)
+router.register(r"courier", CourierInfoView)
+router.register(r"vendor", VendorInfoView)
 ##router.register(r'user', CustomUserInfoView)
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', include(router.urls)),
-    re_path('auth/', include('djoser.urls')),
-    re_path('auth/', include('djoser.urls.authtoken'))
+    path("", include(router.urls)),
+    re_path("auth/", include("djoser.urls")),
+    re_path("auth/", include("djoser.urls.authtoken")),
 ]

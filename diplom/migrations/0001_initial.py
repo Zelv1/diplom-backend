@@ -145,7 +145,7 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("adress", models.CharField(max_length=50, verbose_name="Адрес")),
+                ("address", models.CharField(max_length=50, verbose_name="Адрес")),
                 (
                     "nameOfOrganization",
                     models.CharField(
@@ -171,7 +171,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ("date", models.DateField(verbose_name="Дата и время создания")),
-                ("adress", models.CharField(max_length=50, verbose_name="Адрес")),
+                ("address", models.CharField(max_length=50, verbose_name="Адрес")),
                 ("deliverTo", models.DateTimeField(verbose_name="Доставить до")),
                 (
                     "state",

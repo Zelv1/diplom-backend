@@ -5,13 +5,13 @@ from .models import CustomUser, Courier, Order, Vendor
 class CourierSerializer(serializers.ModelSerializer):
     class Meta:
         model = Courier
-        fields = '__all__'
+        fields = "__all__"
 
 
 class VendorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vendor
-        fields = '__all__'
+        fields = "__all__"
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
@@ -20,10 +20,18 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'courier', 'vendor']
+        fields = [
+            "id",
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            "courier",
+            "vendor",
+        ]
 
 
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = '__all__'
+        fields = "__all__"
