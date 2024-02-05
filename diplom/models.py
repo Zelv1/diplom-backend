@@ -39,6 +39,11 @@ class Courier(models.Model):
 
 
 class Order(models.Model):
+    STATE_CHOICES = [
+        ("1", "Обрабатывается"),
+        ("2", "Подготавливают"),
+        ("3", "Готов"),
+    ]
     IDVendor = models.ForeignKey(
         "Vendor", on_delete=models.CASCADE, verbose_name="Заказчик"
     )
@@ -54,11 +59,19 @@ class Order(models.Model):
     deliverTo = models.DateTimeField(verbose_name="Доставить до")
     state = models.CharField(
         max_length=255,
-        choices=(("1", "Обрабатывается"), ("2", "Подготавливают"), ("3", "Готов")),
+        choices=STATE_CHOICES,
+        default="1",
         verbose_name="Состояние",
     )
     phoneNumber = models.CharField(max_length=17, verbose_name="Телефон для связи")
     review = models.TextField(null=True, blank=True, verbose_name="Комментарий")
+
+    def save(self, *args, **kwargs):
+        if not self.deliverTo:
+            self.deliverTo = time.timezone.now() + time.timezone.timedelta(minutes=45)
+        super().save(*args, **kwargs)
+
+
 
     class Meta:
         verbose_name = "Заказ"
