@@ -1,7 +1,7 @@
 import time
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
+from datetime import datetime, timedelta
 
 # Create your models here.
 class CustomUser(AbstractUser):
@@ -56,7 +56,7 @@ class Order(models.Model):
     )
     date = models.DateField(verbose_name="Дата и время создания", auto_now_add=True)
     address = models.CharField(max_length=50, verbose_name="Адрес")
-    deliverTo = models.DateTimeField(verbose_name="Доставить до")
+    deliverTo = models.DateTimeField(verbose_name="Доставить до", blank=True, default=datetime.now()+timedelta(minutes=45))
     state = models.CharField(
         max_length=255,
         choices=STATE_CHOICES,
@@ -66,10 +66,6 @@ class Order(models.Model):
     phoneNumber = models.CharField(max_length=17, verbose_name="Телефон для связи")
     review = models.TextField(null=True, blank=True, verbose_name="Комментарий")
 
-    def save(self, *args, **kwargs):
-        if not self.deliverTo:
-            self.deliverTo = time.timezone.now() + time.timezone.timedelta(minutes=45)
-        super().save(*args, **kwargs)
 
 
 
